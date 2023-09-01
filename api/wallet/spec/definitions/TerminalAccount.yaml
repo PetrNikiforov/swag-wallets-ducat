@@ -1,0 +1,14 @@
+---
+description: Terminal account status
+type: object
+required:
+  - available
+properties:
+  available:
+    x-rebillyMerge:
+      - $ref: "#/definitions/Asset"
+      - description: |
+          Funds available for use.
+        example:
+          amount: 1200000
+          currency: USD

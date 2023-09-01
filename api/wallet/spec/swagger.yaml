@@ -111,6 +111,14 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  terminalID:
+    name: terminalID
+    in: path
+    description: Identifier of the terminal
+    required: true
+    type: string
+    maxLength: 40
+    minLength: 1
   identityID:
     name: identityID
     in: path
@@ -286,6 +294,9 @@ tags:
     description: ""
   - name: Wallets
     x-displayName: Wallets
+    description: ""
+  - name: Terminals
+    x-displayName: Terminals
     description: ""
   - name: Deposits
     x-displayName: Deposits

@@ -1,0 +1,21 @@
+---
+get:
+  operationId: getTerminalAccount
+  summary: Get terminal account status
+  tags:
+    - Terminals
+  parameters:
+    - $ref: "#/parameters/requestID"
+    - $ref: "#/parameters/deadline"
+    - $ref: "#/parameters/terminalID"
+  responses:
+    "200":
+      description: Terminal account received
+      schema:
+        $ref: "#/definitions/TerminalAccount"
+    "404":
+      $ref: "#/responses/NotFound"
+    "400":
+      $ref: "#/responses/BadRequest"
+    "401":
+      $ref: "#/responses/Unauthorized"
