@@ -397,7 +397,7 @@ get_request_spec('GetReports') ->
         }},
         {'type', #{
             source => qs_val,
-            rules  => [{type, 'binary'}, {enum, ['withdrawalRegistry']}, true
+            rules  => [{type, 'binary'}, {enum, ['withdrawalRegistry', 'withdrawalSingle']}, true
 , {required, false}]
         }}
     ].
