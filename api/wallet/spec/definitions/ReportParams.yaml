@@ -10,6 +10,10 @@ properties:
     type: string
     enum:
       - withdrawalRegistry
+      - withdrawalSingle
+  withdrawalID:
+    x-rebillyMerge:
+      - $ref: "#/definitions/WithdrawalID"
   fromTime:
     description: Start of the time period
     type: string
