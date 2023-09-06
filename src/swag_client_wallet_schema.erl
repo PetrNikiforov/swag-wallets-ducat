@@ -1318,7 +1318,7 @@ get_raw() ->
           <<"description">> => <<"Type of reports received">>,
           <<"required">> => false,
           <<"type">> => <<"string">>,
-          <<"enum">> => [ <<"withdrawalRegistry">> ]
+          <<"enum">> => [ <<"withdrawalRegistry">>, <<"withdrawalSingle">> ]
         } ],
         <<"responses">> => #{
           <<"200">> => #{
@@ -3817,7 +3817,12 @@ get_raw() ->
         <<"reportType">> => #{
           <<"type">> => <<"string">>,
           <<"description">> => <<"Type of report">>,
-          <<"enum">> => [ <<"withdrawalRegistry">> ]
+          <<"enum">> => [ <<"withdrawalRegistry">>, <<"withdrawalSingle">> ]
+        },
+        <<"withdrawalID">> => #{
+          <<"type">> => <<"string">>,
+          <<"example">> => <<"tZ0jUmlsV0">>,
+          <<"description">> => <<"Identifier of funds withdrawal">>
         },
         <<"fromTime">> => #{
           <<"type">> => <<"string">>,
@@ -3832,6 +3837,7 @@ get_raw() ->
       },
       <<"example">> => #{
         <<"reportType">> => <<"withdrawalRegistry">>,
+        <<"withdrawalID">> => <<"tZ0jUmlsV0">>,
         <<"fromTime">> => <<"2000-01-23T04:56:07.000+00:00">>,
         <<"toTime">> => <<"2000-01-23T04:56:07.000+00:00">>
       }
