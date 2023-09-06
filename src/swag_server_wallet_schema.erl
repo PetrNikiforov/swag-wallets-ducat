@@ -106,6 +106,10 @@ get_raw() ->
     <<"description">> => <<"">>,
     <<"x-displayName">> => <<"Wallets">>
   }, #{
+    <<"name">> => <<"Terminals">>,
+    <<"description">> => <<"">>,
+    <<"x-displayName">> => <<"Terminals">>
+  }, #{
     <<"name">> => <<"Deposits">>,
     <<"description">> => <<"">>,
     <<"x-displayName">> => <<"Deposits">>
@@ -1638,6 +1642,58 @@ get_raw() ->
             <<"description">> => <<"Residence region found">>,
             <<"schema">> => #{
               <<"$ref">> => <<"#/definitions/Residence">>
+            }
+          },
+          <<"400">> => #{
+            <<"description">> => <<"Invalid input data for operation">>,
+            <<"schema">> => #{
+              <<"$ref">> => <<"#/definitions/BadRequest">>
+            }
+          },
+          <<"401">> => #{
+            <<"description">> => <<"Authorization error">>
+          },
+          <<"404">> => #{
+            <<"description">> => <<"The content you are looking for was not found">>
+          }
+        }
+      }
+    },
+    <<"/terminals/{terminalID}/account">> => #{
+      <<"get">> => #{
+        <<"tags">> => [ <<"Terminals">> ],
+        <<"summary">> => <<"Get terminal account status">>,
+        <<"operationId">> => <<"getTerminalAccount">>,
+        <<"parameters">> => [ #{
+          <<"name">> => <<"X-Request-ID">>,
+          <<"in">> => <<"header">>,
+          <<"description">> => <<"Unique identifier of the request to the system">>,
+          <<"required">> => true,
+          <<"type">> => <<"string">>,
+          <<"maxLength">> => 32,
+          <<"minLength">> => 1
+        }, #{
+          <<"name">> => <<"X-Request-Deadline">>,
+          <<"in">> => <<"header">>,
+          <<"description">> => <<"Maximum request processing time">>,
+          <<"required">> => false,
+          <<"type">> => <<"string">>,
+          <<"maxLength">> => 40,
+          <<"minLength">> => 1
+        }, #{
+          <<"name">> => <<"terminalID">>,
+          <<"in">> => <<"path">>,
+          <<"description">> => <<"Identifier of the terminal">>,
+          <<"required">> => true,
+          <<"type">> => <<"string">>,
+          <<"maxLength">> => 40,
+          <<"minLength">> => 1
+        } ],
+        <<"responses">> => #{
+          <<"200">> => #{
+            <<"description">> => <<"Terminal account received">>,
+            <<"schema">> => #{
+              <<"$ref">> => <<"#/definitions/TerminalAccount">>
             }
           },
           <<"400">> => #{
@@ -3864,6 +3920,19 @@ get_raw() ->
         <<"code">> => <<"code">>
       }
     },
+    <<"TerminalAccount">> => #{
+      <<"type">> => <<"object">>,
+      <<"required">> => [ <<"available">> ],
+      <<"properties">> => #{
+        <<"available">> => #{
+          <<"$ref">> => <<"#/definitions/TerminalAccount_available">>
+        }
+      },
+      <<"description">> => <<"Terminal account status">>,
+      <<"example">> => #{
+        <<"available">> => <<"{\"amount\":1200000,\"currency\":\"USD\"}">>
+      }
+    },
     <<"UserInteraction">> => #{
       <<"type">> => <<"object">>,
       <<"required">> => [ <<"interactionType">> ],
@@ -4951,6 +5020,26 @@ get_raw() ->
         <<"id">> => <<"id">>
       }
     },
+    <<"TerminalAccount_available">> => #{
+      <<"type">> => <<"object">>,
+      <<"required">> => [ <<"amount">>, <<"currency">> ],
+      <<"properties">> => #{
+        <<"amount">> => #{
+          <<"type">> => <<"integer">>,
+          <<"format">> => <<"int64">>,
+          <<"example">> => 1430000,
+          <<"description">> => <<"The amount of money in minor units, for example, in cents\n">>
+        },
+        <<"currency">> => #{
+          <<"type">> => <<"string">>,
+          <<"example">> => <<"USD">>,
+          <<"description">> => <<"Currency character code according to \n[ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).\n">>,
+          <<"pattern">> => <<"^[A-Z]{3}$">>
+        }
+      },
+      <<"description">> => <<"Funds available for use.\n">>,
+      <<"example">> => <<"{\"amount\":1200000,\"currency\":\"USD\"}">>
+    },
     <<"UserInteractionForm_inner">> => #{
       <<"type">> => <<"object">>,
       <<"required">> => [ <<"key">>, <<"template">> ],
@@ -5191,6 +5280,15 @@ get_raw() ->
       <<"name">> => <<"providerID">>,
       <<"in">> => <<"path">>,
       <<"description">> => <<"Identifier of the provider">>,
+      <<"required">> => true,
+      <<"type">> => <<"string">>,
+      <<"maxLength">> => 40,
+      <<"minLength">> => 1
+    },
+    <<"terminalID">> => #{
+      <<"name">> => <<"terminalID">>,
+      <<"in">> => <<"path">>,
+      <<"description">> => <<"Identifier of the terminal">>,
       <<"required">> => true,
       <<"type">> => <<"string">>,
       <<"maxLength">> => 40,

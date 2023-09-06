@@ -165,6 +165,11 @@ get_operations() ->
             method => <<"GET">>,
             handler => 'swag_server_wallet_residences_handler'
         },
+        'GetTerminalAccount' => #{
+            path => "/wallet/v0/terminals/:terminalID/account",
+            method => <<"GET">>,
+            handler => 'swag_server_wallet_terminals_handler'
+        },
         'CreateW2WTransfer' => #{
             path => "/wallet/v0/w2w/transfers",
             method => <<"POST">>,
