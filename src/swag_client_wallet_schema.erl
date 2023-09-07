@@ -1318,7 +1318,7 @@ get_raw() ->
           <<"description">> => <<"Type of reports received">>,
           <<"required">> => false,
           <<"type">> => <<"string">>,
-          <<"enum">> => [ <<"withdrawalRegistry">>, <<"withdrawalSingle">> ]
+          <<"enum">> => [ <<"withdrawalRegistry">>, <<"singleWithdrawal">> ]
         } ],
         <<"responses">> => #{
           <<"200">> => #{
@@ -3787,7 +3787,7 @@ get_raw() ->
         <<"type">> => #{
           <<"type">> => <<"string">>,
           <<"description">> => <<"Report type">>,
-          <<"enum">> => [ <<"withdrawalRegistry">> ]
+          <<"enum">> => [ <<"withdrawalRegistry">>, <<"singleWihtrawal">> ]
         },
         <<"files">> => #{
           <<"type">> => <<"array">>,
@@ -3817,7 +3817,7 @@ get_raw() ->
         <<"reportType">> => #{
           <<"type">> => <<"string">>,
           <<"description">> => <<"Type of report">>,
-          <<"enum">> => [ <<"withdrawalRegistry">>, <<"withdrawalSingle">> ]
+          <<"enum">> => [ <<"withdrawalRegistry">>, <<"singleWithdrawal">> ]
         },
         <<"withdrawalID">> => #{
           <<"type">> => <<"string">>,
